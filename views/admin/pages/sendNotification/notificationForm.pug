@@ -1,0 +1,14 @@
+extends ../../layout/default
+
+block main
+    h1 Send Notification
+    if message
+        p.success #{message}
+    form(action="/send-notification/send", method="POST")
+        label(for="title") Title:
+        input#title(type="text", name="title", required=true)
+        
+        label(for="body") Body:
+        textarea#body(name="body", required=true)
+        
+        button(type="submit") Send Notification
