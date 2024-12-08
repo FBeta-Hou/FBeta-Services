@@ -26,6 +26,12 @@ html(lang="en")
                 b.bTag Địa chỉ: 
                 span#addr 
             p 
+                b.bTag Quãng đường: 
+                span#Dist
+            p 
+                b.bTag Thời gian đi: 
+                span#Dura
+            p 
                 b.bTag Số điện thoại liên hệ: 
                 span#sdt
             p 
@@ -51,6 +57,12 @@ html(lang="en")
             p 
                 b.bTag Địa chỉ: 
                 span#addr_mobi
+            p 
+                b.bTag Quãng đường: 
+                span#Dist_mobi
+            p 
+                b.bTag Thời gian đi: 
+                span#Dura_mobi
             p 
                 b.bTag Số điện thoại liên hệ: 
                 span#sdt_mobi
@@ -148,12 +160,23 @@ html(lang="en")
                     .addTo(map);
 
                 marker.getElement().addEventListener('click', () => {
+                    
                     document.getElementById('name').innerHTML = index.Ten_Khu_Di_Tan;
                     document.getElementById('addr').innerHTML = index.Dia_Chi_Chi_Tiet;
                     document.getElementById('sdt').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
                     document.getElementById('people').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
+                    dest=[marker.getLngLat().lng, marker.getLngLat().lat];
+                    getDistanceDuration(userCoords, dest);
+
+                    const imgs = document.querySelectorAll('.img_panel');
                     if(index.Anh){
-                        document.getElementById('img_lpanel').src = index.Anh;
+                        imgs.forEach(function(imgsc){
+                            imgsc.src = index.Anh;
+                        })
+                    }else{
+                        imgs.forEach(function(imgsc){
+                            imgsc.src = "/assets/images/Untitled.jpeg";
+                        })
                     }
                     if (window.innerWidth <= 800) {
                         document.getElementById('tl').innerHTML = index.Ten_Khu_Di_Tan;
@@ -164,7 +187,6 @@ html(lang="en")
                     }else{
                         document.getElementById('leftPanel').style.left = '0';
                     }
-                    dest=[marker.getLngLat().lng, marker.getLngLat().lat];
                 })
 
                 marker.getElement().addEventListener('mouseenter', () => {
@@ -178,6 +200,7 @@ html(lang="en")
                     marker.getPopup().remove();
                 });
             })
+
         })
 
 
@@ -245,6 +268,28 @@ html(lang="en")
                 document.getElementById('leftPanel').style.left = '-500px';
             }
         });
+
+        function getDistanceDuration(userCoords, dest){
+
+            if(userCoords){
+                const directionsUrl = `https://rsapi.goong.io/Direction?origin=${userCoords[1]},${userCoords[0]}&destination=${dest[1]},${dest[0]}&vehicle=car&api_key=${APIKey}`;
+                fetch(directionsUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.routes && data.routes.length > 0) {
+                        document.getElementById('Dist').innerHTML = data.routes[0].legs[0].distance.text; 
+                        document.getElementById('Dura').innerHTML = data.routes[0].legs[0].duration.text;
+                        document.getElementById('Dist_mobi').innerHTML = data.routes[0].legs[0].distance.text;  
+                        document.getElementById('Dura_mobi').innerHTML = data.routes[0].legs[0].duration.text;
+                    }
+                })
+            }else{
+                document.getElementById('Dist').innerHTML = "Đang cập nhật";  
+                document.getElementById('Dura').innerHTML = "Đang cập nhật"
+                document.getElementById('Dist_mobi').innerHTML = "Đang cập nhật";  
+                document.getElementById('Dura_mobi').innerHTML = "Đang cập nhật"
+            }
+        }
 
         const buttons = document.querySelectorAll('.btn_direct');
         buttons.forEach(function(button) {

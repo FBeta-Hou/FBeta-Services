@@ -49,7 +49,7 @@ const locationSchema = new mongoose.Schema({
     Trang_Thai: {
         type: String,
         required: true,
-        enum: ['Chờ', 'Hoạt Động', 'Chờ Hoạt Động']
+        enum: ['Chờ', 'Hoạt Động', 'Ngưng Hoạt Động']
     },
     Anh: {
         type: String,
