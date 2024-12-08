@@ -17,10 +17,6 @@ const locationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    Tinh_Thanh_Pho: {
-        type: String,
-        required: true
-    },
     Dia_Chi_Chi_Tiet: {
         type: String,
         required: true
