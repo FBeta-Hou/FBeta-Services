@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 
 // Cấu hình Firebase Admin SDK
-console.log(process.env.private_key)
 
 const serviceAccount = {
   "type": process.env.type,
