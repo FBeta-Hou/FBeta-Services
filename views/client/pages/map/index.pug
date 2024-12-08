@@ -155,50 +155,52 @@ html(lang="en")
 
         map.on('load', () =>{
             locations.forEach(function(index){
-                const marker = new goongjs.Marker({color: 'green'})
-                    .setLngLat([index.lng, index.lat])
-                    .addTo(map);
+                if(index.Trang_Thai.toLowerCase() == "hoạt động"){
+                    const marker = new goongjs.Marker({color: 'green'})
+                        .setLngLat([index.lng, index.lat])
+                        .addTo(map);
 
-                marker.getElement().addEventListener('click', () => {
-                    
-                    document.getElementById('name').innerHTML = index.Ten_Khu_Di_Tan;
-                    document.getElementById('addr').innerHTML = index.Dia_Chi_Chi_Tiet;
-                    document.getElementById('sdt').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
-                    document.getElementById('people').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
-                    dest=[marker.getLngLat().lng, marker.getLngLat().lat];
-                    getDistanceDuration(userCoords, dest);
+                    marker.getElement().addEventListener('click', () => {
+                        
+                        document.getElementById('name').innerHTML = index.Ten_Khu_Di_Tan;
+                        document.getElementById('addr').innerHTML = index.Dia_Chi_Chi_Tiet;
+                        document.getElementById('sdt').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
+                        document.getElementById('people').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
+                        dest=[marker.getLngLat().lng, marker.getLngLat().lat];
+                        getDistanceDuration(userCoords, dest);
 
-                    const imgs = document.querySelectorAll('.img_panel');
-                    if(index.Anh){
-                        imgs.forEach(function(imgsc){
-                            imgsc.src = index.Anh;
-                        })
-                    }else{
-                        imgs.forEach(function(imgsc){
-                            imgsc.src = "/assets/images/Untitled.jpeg";
-                        })
-                    }
-                    if (window.innerWidth <= 800) {
-                        document.getElementById('tl').innerHTML = index.Ten_Khu_Di_Tan;
-                        document.getElementById('addr_mobi').innerHTML = index.Dia_Chi_Chi_Tiet;
-                        document.getElementById('sdt_mobi').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
-                        document.getElementById('people_mobi').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
-                        document.getElementById('leftPanel_mobi').style.bottom = '0';
-                    }else{
-                        document.getElementById('leftPanel').style.left = '0';
-                    }
-                })
+                        const imgs = document.querySelectorAll('.img_panel');
+                        if(index.Anh){
+                            imgs.forEach(function(imgsc){
+                                imgsc.src = index.Anh;
+                            })
+                        }else{
+                            imgs.forEach(function(imgsc){
+                                imgsc.src = "/assets/images/Untitled.jpeg";
+                            })
+                        }
+                        if (window.innerWidth <= 800) {
+                            document.getElementById('tl').innerHTML = index.Ten_Khu_Di_Tan;
+                            document.getElementById('addr_mobi').innerHTML = index.Dia_Chi_Chi_Tiet;
+                            document.getElementById('sdt_mobi').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
+                            document.getElementById('people_mobi').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
+                            document.getElementById('leftPanel_mobi').style.bottom = '0';
+                        }else{
+                            document.getElementById('leftPanel').style.left = '0';
+                        }
+                    })
 
-                marker.getElement().addEventListener('mouseenter', () => {
-                    marker.getElement().style.cursor = 'pointer';
-                    const popup = new goongjs.Popup().setHTML(`<h3>${index.Dia_Chi_Chi_Tiet}</h3>`);
-                    marker.setPopup(popup).togglePopup();
-                })
+                    marker.getElement().addEventListener('mouseenter', () => {
+                        marker.getElement().style.cursor = 'pointer';
+                        const popup = new goongjs.Popup().setHTML(`<h3>${index.Dia_Chi_Chi_Tiet}</h3>`);
+                        marker.setPopup(popup).togglePopup();
+                    })
 
-                marker.getElement().addEventListener('mouseleave', () => {
-                    marker.getElement().style.cursor = 'default';
-                    marker.getPopup().remove();
-                });
+                    marker.getElement().addEventListener('mouseleave', () => {
+                        marker.getElement().style.cursor = 'default';
+                        marker.getPopup().remove();
+                    });
+                }
             })
 
         })
