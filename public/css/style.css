@@ -143,3 +143,70 @@
 .bTag{
   color: blue;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* CSS cho container chính */
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Tiêu đề */
+h1 {
+  color: #333;
+}
+
+/* Mô tả */
+p {
+  color: #555;
+  font-size: 16px;
+}
+
+/* Nút cho phép nhận thông báo */
+.btn-allow {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.btn-allow:hover {
+  background-color: #45a049;
+}
+
+/* Nút từ chối */
+.btn-deny {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-deny:hover {
+  background-color: #e53935;
+}
