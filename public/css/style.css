@@ -30,13 +30,49 @@
 #leftPanel {
   width: 25%;
   position: fixed;
-  top: 0;
+  top: 0px;
   left: -500px;
   z-index: 10;
   background-color: #fff;
   overflow-x: hidden;
   transition: left 0.5s ease;
   border-radius: 5px;
+}
+
+#leftPanel_mobi {
+  width: 100%;
+  height: 30%;
+  position: fixed;
+  left: 0px;
+  bottom: -500px;
+  z-index: 10;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: bottom 0.5s ease;
+  border-radius: 5px;
+}
+
+#leftPanel_mobi {
+  width: 100%;
+  height: 30%;
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: bottom 0.5s ease;
+  border-radius: 5px;
+}
+
+#leftPanel_mobi>.in_leftPanel{
+  padding: 0 15px;
+}
+
+#title_mobi{
+  padding: 5px 15px;
+}
+
+#title_mobi>strong{
+  font-size: 20px;
 }
 
 #closePanel {
