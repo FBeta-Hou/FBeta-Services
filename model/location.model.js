@@ -43,7 +43,7 @@ const locationSchema = new mongoose.Schema({
         default: Date.now
     },
     So_Dien_Thoai_Nguoi_Phu_Trach: {
-        type: Number,
+        type: String,
         required: true
     },
     Trang_Thai: {

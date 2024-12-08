@@ -85,6 +85,16 @@
   background-color: #fff;
 }
 
+#closePanel_mobi {
+  position: absolute;
+  padding: 5px 10px;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 #closePanel:hover{
   background-color: #cccccc;
   cursor: pointer;

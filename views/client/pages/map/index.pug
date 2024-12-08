@@ -42,7 +42,7 @@ html(lang="en")
                 button.btn#call_sdt
                     i.fa-solid.fa-phone
     #leftPanel_mobi
-        button#closePanel
+        button#closePanel_mobi
             i.fa-solid.fa-x
         #title_mobi 
             strong#tl
@@ -237,6 +237,15 @@ html(lang="en")
                 document.getElementById('leftPanel').style.left = '-500px';
             }
         });
+
+        document.getElementById('closePanel_mobi').addEventListener('click', () => {
+            if (window.innerWidth <= 800) {
+                document.getElementById('leftPanel_mobi').style.bottom = '-500px';
+            }else{
+                document.getElementById('leftPanel').style.left = '-500px';
+            }
+        });
+
         const buttons = document.querySelectorAll('.btn_direct');
         buttons.forEach(function(button) {
             button.addEventListener('click', function() {
