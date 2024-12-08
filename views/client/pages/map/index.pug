@@ -19,7 +19,7 @@ html(lang="en")
             i.fa-solid.fa-x
         div
             .address#name 
-            img.img_panel(style="padding:0" src="/assets/images/Untitled.jpeg" alt="Hình ảnh")
+            img.img_panel#img_lpanel(style="padding:0" src="/assets/images/Untitled.jpeg" alt="Hình ảnh")
         .in_leftPanel
             div
             p 
@@ -100,8 +100,8 @@ html(lang="en")
                   (error) => {
                       console.error('Lỗi lấy vị trí:', error);
                       Toast.fire({
-                        icon: 'error',
-                        title: 'Không thể lấy vị trí hiện tại. Vui lòng kiểm tra quyền truy cập vị trí.'
+                        icon: 'info',
+                        title: 'Đang lấy vị trí hiện tại! Vui lòng cấp quyền vị trí nếu bạn chưa thực hiện'
                       })
                   },
                   {
@@ -123,6 +123,9 @@ html(lang="en")
                     document.getElementById('addr').innerHTML = index.Dia_Chi_Chi_Tiet;
                     document.getElementById('sdt').innerHTML = index.So_Dien_Thoai_Nguoi_Phu_Trach;
                     document.getElementById('people').innerHTML = index.So_Nguoi_Hien_Tai + "/" + index.Suc_Chua_Toi_Da;
+                    if(index.Anh){
+                        document.getElementById('img_lpanel').src = index.Anh;
+                    }
                     document.getElementById('leftPanel').style.left = '0';
                     dest=[marker.getLngLat().lng, marker.getLngLat().lat];
                 })
@@ -184,8 +187,8 @@ html(lang="en")
                 });
             } else {
             Toast.fire({
-                icon: 'error',
-                title: 'Không thể lấy vị trí người dùng.'
+                icon: 'info',
+                title: 'Đang lấy vị trí hiện tại! Vui lòng cấp quyền vị trí nếu bạn chưa thực hiện'
             })
             }
         });
