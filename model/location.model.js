@@ -51,6 +51,10 @@ const locationSchema = new mongoose.Schema({
         required: true,
         enum: ['Chờ', 'Hoạt Động', 'Chờ Hoạt Động']
     },
+    Anh: {
+        type: String,
+        required: false,
+    },
 })
 
 const Location = mongoose.model("Location", locationSchema, "locations");
