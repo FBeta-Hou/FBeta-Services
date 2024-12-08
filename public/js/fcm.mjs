@@ -32,11 +32,11 @@ function requestPermission() {
         
         // Tạo và hiển thị thông báo
         new Notification('Permission granted!', {
-          body: 'You can now receive notifications.',
+          body: 'Cảm ơn bạn đã chấp nhận thông báo!.',
           icon: 'https://via.placeholder.com/100'
         });
       } else {
-        console.log('Notification permission denied.');
+          alert('Bạn đã từ chối quyền nhận thông báo, bạn hãy bật lên để sử dụng trang web!');
       }
     });
   }
@@ -50,7 +50,7 @@ getToken(messaging, { vapidKey: 'BD8qmoU_jP1DmohUNKcvJmfsvywLFhnO8eYpOR6AUijA27M
   if (currentToken) {
     // Send the token to your server and update the UI if necessary
     // ...
-    document.write(currentToken);
+    console.log(currentToken);
 
     const tokenDocRef = doc(db, "tokenDevice", currentToken);
     const tokenDocSnap = await getDoc(tokenDocRef);
