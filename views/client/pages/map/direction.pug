@@ -5,13 +5,29 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title= title
     script(src="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js")
+    script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css")
     link(rel="stylesheet", href="/css/style.css")
 
   body
+    button#move-to-location-btn
+        i.fa-solid.fa-location-crosshairs
     div#map(style="width: 100%; height: 100vh;")
 
     script.
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+                toast.addEventListener("click", Swal.close);
+            },
+        });
 
       const maptitleskey = !{maptitleskey};
       const APIKey = !{APIKey};
@@ -29,7 +45,7 @@ html(lang="en")
       });
 
       document.addEventListener('DOMContentLoaded', () => {
-        
+
           const urlParams = new URLSearchParams(window.location.search);
           const destLat = parseFloat(urlParams.get('destLat'));
           const destLng = parseFloat(urlParams.get('destLng'));
@@ -62,10 +78,12 @@ html(lang="en")
                               center: userCoords,
                               zoom: 16,
                           });
-                          direct(userCoords, destinationCoords);
+                          const userC = [userMarker.getLngLat().lng, userMarker.getLngLat().lat];
+                          direct(userC, destinationCoords);
                       } else {
                           userMarker.setLngLat(userCoords);
-                          direct(userCoords, destinationCoords);
+                          const userC = [userMarker.getLngLat().lng, userMarker.getLngLat().lat];
+                          direct(userC, destinationCoords);
                       }
                   },
                   (error) => {
@@ -95,17 +113,28 @@ html(lang="en")
                     const polyline = data.routes[0].overview_polyline.points;
                     if (polyline) {
                         const decodedPolyline = decodePolyline(polyline);
-
-                        map.addSource('route', {
-                            type: 'geojson',
-                            data: {
+                        map.on('load', () => {
+                            if (map.getSource('route')) {
+                            map.getSource('route').setData({
                                 type: 'Feature',
                                 geometry: {
                                     type: 'LineString',
                                     coordinates: decodedPolyline,
                                 },
-                            },
-                        });
+                            });
+                        }else{
+                            map.addSource('route', {
+                                type: 'geojson',
+                                data: {
+                                    type: 'Feature',
+                                    geometry: {
+                                        type: 'LineString',
+                                        coordinates: decodedPolyline,
+                                    },
+                                },
+                            });
+                        }
+
 
                         map.addLayer({
                             id: 'route',
@@ -116,6 +145,7 @@ html(lang="en")
                                 'line-width': 5,
                             },
                         });
+                        })
                     }
                 } else {
                     Toast.fire({
@@ -168,3 +198,16 @@ html(lang="en")
 
           return points;
       }
+      document.getElementById('move-to-location-btn').addEventListener('click', () => {
+            if (userCoords) {
+                map.flyTo({
+                    center: userCoords,
+                    zoom: 14,
+                });
+            } else {
+            Toast.fire({
+                icon: 'info',
+                title: 'Đang lấy vị trí hiện tại! Vui lòng cấp quyền vị trí nếu bạn chưa thực hiện'
+            })
+            }
+        });
