@@ -17,10 +17,6 @@ const locationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    Tinh_Thanh_Pho: {
-        type: String,
-        required: true
-    },
     Dia_Chi_Chi_Tiet: {
         type: String,
         required: true
@@ -49,7 +45,7 @@ const locationSchema = new mongoose.Schema({
     Trang_Thai: {
         type: String,
         required: true,
-        enum: ['Chờ', 'Hoạt Động', 'Chờ Hoạt Động']
+        enum: ['Chờ', 'Hoạt Động', 'Ngưng Hoạt Động']
     },
     Anh: {
         type: String,

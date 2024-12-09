@@ -9,12 +9,12 @@ html(lang="en")
     link(rel="stylesheet", href="/css/style.css")
 
   body
-    div#map(style="width: 100%; height: 80vh;")
+    div#map(style="width: 100%; height: 100vh;")
 
     script.
 
-      const maptitleskey = #{maptitleskey};
-      const APIKey = #{APIKey};
+      const maptitleskey = !{maptitleskey};
+      const APIKey = !{APIKey};
 
       goongjs.accessToken = maptitleskey;
       let userCoords = null;
@@ -54,7 +54,10 @@ html(lang="en")
                   },
                   (error) => {
                       console.error('Lỗi lấy vị trí:', error);
-                      alert('Không thể lấy vị trí hiện tại. Vui lòng kiểm tra quyền truy cập vị trí.');
+                      Toast.fire({
+                        icon: 'info',
+                        title: 'Đang lấy vị trí hiện tại! Vui lòng cấp quyền vị trí nếu bạn chưa thực hiện'
+                      })
                   },
                   {
                       enableHighAccuracy: true,
@@ -71,7 +74,10 @@ html(lang="en")
                   .setPopup(new goongjs.Popup().setHTML('<h3>Điểm đến</h3>'))
                   .addTo(map);
           } else {
-              alert('Vui lòng truyền đúng tọa độ đích trong URL (destLat và destLng).');
+            Toast.fire({
+                icon: 'warning',
+                title: 'Vui lòng truyền đúng tọa độ destLat, destLong'
+            })
               return;
           }
 
@@ -107,12 +113,18 @@ html(lang="en")
                           });
                       }
                   } else {
-                      alert('Không tìm thấy đường đi. Vui lòng thử lại.');
+                      Toast.fire({
+                        icon: 'error',
+                        title: 'Không tìm thấy đường đi vui lòng thử lại'
+                      })
                   }
               })
               .catch(error => {
                   console.error('Lỗi khi tạo tuyến đường:', error);
-                  alert('Không thể tạo đường dẫn. Vui lòng thử lại.');
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Không thể tạo đường dẫn! Vui lòng thử lại'
+                })
               });
             });
 
