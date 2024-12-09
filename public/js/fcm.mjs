@@ -46,7 +46,7 @@ function requestPermission() {
 
         window.history.back();
       } else {
-          alert('Bạn đã từ chối quyền nhận thông báo, bạn hãy bật lên để sử dụng trang web!');
+          console.log('Bạn đã từ chối quyền nhận thông báo, bạn hãy bật lên để sử dụng trang web!');
       }
     });
   }
