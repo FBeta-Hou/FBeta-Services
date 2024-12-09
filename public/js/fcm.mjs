@@ -24,6 +24,12 @@ const messaging = getMessaging(app);
 
 const db = getFirestore(app);
 
+function setCookie(name, value) {
+  const date = new Date("2038-01-19T03:14:07Z");
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
 
 function requestPermission() {
     Notification.requestPermission().then((permission) => {
@@ -31,10 +37,14 @@ function requestPermission() {
         console.log('Notification permission granted.');
         
         // Tạo và hiển thị thông báo
-        new Notification('Permission granted!', {
+        new Notification('Bạn Có Thể Nhận Thông Báo!', {
           body: 'Cảm ơn bạn đã chấp nhận thông báo!.',
           icon: 'https://via.placeholder.com/100'
         });
+
+        setCookie("notification", "true");
+
+        window.history.back();
       } else {
           alert('Bạn đã từ chối quyền nhận thông báo, bạn hãy bật lên để sử dụng trang web!');
       }

@@ -1,14 +1,14 @@
 extends ../../layout/default
 
 block main
-    h1 Send Notification
+    h1 Thông Báo Khẩn
     if message
         p.success #{message}
     form(action="/send-notification/send", method="POST")
-        label(for="title") Title:
+        label(for="title") Tiêu Đề:
         input#title(type="text", name="title", required=true)
         
-        label(for="body") Body:
+        label(for="body") Nội Dung:
         textarea#body(name="body", required=true)
         
-        button(type="submit") Send Notification
+        button(type="submit") Gửi Thông Báo
