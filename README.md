@@ -1,7 +1,7 @@
 # **Yêu Cầu Hệ Thống**
 
 - **Node.js**: Phiên bản 12.x trở lên.
-- **MongoDB**: Cài đặt và chạy MongoDB cục bộ hoặc từ một server.
+- **MongoDB**: Cài đặt và chạy [MongoDB](https://www.mongodb.com/docs/manual/) cục bộ hoặc cloud với [MongoDB Atlas](https://www.mongodb.com/docs/atlas/).
 - **Goong API Key**: Đăng ký và nhận API Key từ [Goong API](https://goong.io/).
 - **Firebase Project**: Tạo và cấu hình Firebase project để sử dụng dịch vụ thông báo đẩy (push notifications). <br>Cụ thể là 
 [FCM ](https://firebase.google.com/docs/cloud-messaging?hl=vi) và [Firestore](https://firebase.google.com/docs/firestore?hl=vi)
