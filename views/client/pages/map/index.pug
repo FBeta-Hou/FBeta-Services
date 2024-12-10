@@ -114,6 +114,9 @@ html(lang="en")
           zoom: 9,
       });
 
+        const fullscreenControl = new goongjs.FullscreenControl();
+        map.addControl(fullscreenControl, 'top-right');
+
       document.addEventListener('DOMContentLoaded', () => {
 
           if (navigator.geolocation) {
