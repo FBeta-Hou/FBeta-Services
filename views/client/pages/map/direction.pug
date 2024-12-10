@@ -43,6 +43,8 @@ html(lang="en")
           center: [105.83991, 21.02800],
           zoom: 9,
       });
+        const fullscreenControl = new goongjs.FullscreenControl();
+        map.addControl(fullscreenControl, 'top-right');
 
       document.addEventListener('DOMContentLoaded', () => {
 
