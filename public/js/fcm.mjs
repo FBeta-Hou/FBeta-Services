@@ -39,7 +39,6 @@ function requestPermission() {
         // Tạo và hiển thị thông báo
         new Notification('Bạn Có Thể Nhận Thông Báo!', {
           body: 'Cảm ơn bạn đã chấp nhận thông báo!.',
-          icon: 'https://via.placeholder.com/100'
         });
 
         setCookie("notification", "true");
