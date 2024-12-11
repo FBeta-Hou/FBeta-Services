@@ -11,6 +11,11 @@ html(lang="en")
     link(rel="stylesheet", href="/css/style.css")
 
   body
+    div.des_icon
+        h4(style="text-align: center;") Chú thích
+        div
+            div#weather-icons-container
+
     div#map(style="width: 100%; height: 100vh;")
     
     script.
@@ -63,30 +68,24 @@ html(lang="en")
                         fetch(weatherUrl)
                         .then(response => response.json())
                         .then(data => {
-                        const iconCode = data.weather[0].icon;
-                        const weatherDescription = data.weather[0].description;
-                        const temperature = data.main.temp;
-                        const humidity = data.main.humidity;
+                            const iconCode = data.weather[0].icon;
+                            const weatherDescription = data.weather[0].description;
+                            const temperature = data.main.temp;
+                            const humidity = data.main.humidity;
 
-                        // Tạo Marker với Icon thời tiết
-                        const marker = new goongjs.Marker({
-                            element: createWeatherMarker(iconCode)})
-                            .setLngLat([prov.lng, prov.lat])
-                            .addTo(map);
+                            // Tạo Marker với Icon thời tiết
+                            const marker = new goongjs.Marker({
+                                element: createWeatherMarker(iconCode)})
+                                .setLngLat([prov.lng, prov.lat])
+                                .addTo(map);
 
-                        marker.getElement().addEventListener('click', () => {
-                            const popup = new goongjs.Popup().setHTML(`<h3>${prov.name}</h3>`);
-                            marker.setPopup(popup).togglePopup();
-                        });
-
-                            
+                            marker.getElement().addEventListener('click', () => {
+                                const popup = new goongjs.Popup().setHTML(`<h3>${prov.name}</h3>`);
+                                marker.setPopup(popup).togglePopup();
+                            });
                         })
                         .catch(err => console.error("Lỗi khi lấy dữ liệu thời tiết:", err));
-                    
-                });
-
-
-                
+                    });
             })
 
 
@@ -102,4 +101,36 @@ html(lang="en")
         
 
         })
+
+        fetch('/assets/weather_icons.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('weather-icons-container');
+                data.forEach(icon => {
+                    const iconContainer = document.createElement('div');
+                    iconContainer.style.margin = '10px';
+                    iconContainer.style.textAlign = 'center';
+                    iconContainer.style.display = 'flex';
+                    iconContainer.style.alignItems = 'center'
+
+                    const dayIcon = document.createElement('img');
+                    dayIcon.src = `http://openweathermap.org/img/wn/${icon.day_icon}`;
+                    dayIcon.alt = icon.description;
+                    dayIcon.title = "Ban ngày: " + icon.description;
+
+                    const nightIcon = document.createElement('img');
+                    nightIcon.src = `http://openweathermap.org/img/wn/${icon.night_icon}`;
+                    nightIcon.alt = icon.description;
+                    nightIcon.title = "Ban đêm: " + icon.description;
+
+                    const label = document.createElement('span');
+                    label.textContent = icon.description;
+
+                    iconContainer.appendChild(dayIcon);
+                    iconContainer.appendChild(nightIcon);
+                    iconContainer.appendChild(label);
+                    container.appendChild(iconContainer);
+                })
+            })
+
         })//end load

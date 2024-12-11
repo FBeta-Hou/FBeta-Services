@@ -1,0 +1,47 @@
+[
+    {
+        "day_icon": "01d.png",
+        "night_icon": "01n.png",
+        "description": "Trời quang"
+    },
+    {
+        "day_icon": "02d.png",
+        "night_icon": "02n.png",
+        "description": "Ít mây"
+    },
+    {
+        "day_icon": "03d.png",
+        "night_icon": "03n.png",
+        "description": "Mây rải rác"
+    },
+    {
+        "day_icon": "04d.png",
+        "night_icon": "04n.png",
+        "description": "Mây dày đặc"
+    },
+    {
+        "day_icon": "09d.png",
+        "night_icon": "09n.png",
+        "description": "Mưa rào"
+    },
+    {
+        "day_icon": "10d.png",
+        "night_icon": "10n.png",
+        "description": "Mưa"
+    },
+    {
+        "day_icon": "11d.png",
+        "night_icon": "11n.png",
+        "description": "Giông bão"
+    },
+    {
+        "day_icon": "13d.png",
+        "night_icon": "13n.png",
+        "description": "Tuyết"
+    },
+    {
+        "day_icon": "50d.png",
+        "night_icon": "50n.png",
+        "description": "Sương mù"
+    }
+]

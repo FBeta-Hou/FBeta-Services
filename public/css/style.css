@@ -216,3 +216,11 @@ p {
   border: 2px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+.des_icon {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 13%;
+  background-color: #fff;
+  z-index: 10;
+}
