@@ -7,5 +7,6 @@ route.get("/", controller.index);
 
 route.get("/direction", controller.direction);
 
+route.get("/weather", controller.weather);
 
 module.exports = route;

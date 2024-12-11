@@ -26,6 +26,17 @@ exports.direction = (req, res) => {
             APIKey: "'" + apiKey + "'",
         });
 }
+
+exports.weather = (req, res) => {
+    const titleKey = process.env.Maptileskey;
+    const apiKey = process.env.APIKey
+
+    res.render('client/pages/map/weather', 
+        {
+            maptitleskey: "'" + titleKey + "'",
+            APIKey: "'" + apiKey + "'",
+        });
+}
     
 
 
