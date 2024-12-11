@@ -12,7 +12,7 @@
 
 #move-to-location-btn {
   position: absolute;
-  top: 50px;
+  bottom: 5px;
   right: 5px;
   background-color: #fff;
   border: 1px solid #333;
@@ -223,4 +223,49 @@ p {
   width: 13%;
   background-color: #fff;
   z-index: 10;
+  overflow-x: hidden;
+  transition: left 0.5s ease;
+}
+.des_icon_mobi {
+  bottom: -500px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 30%;
+  background-color: #fff;
+  z-index: 10;
+  overflow-x: hidden;
+  transition: bottom 0.5s ease;
+}
+#show_chuthich{
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 2px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+#show_chuthich:hover{
+  background-color: #f0f0f0;
+}
+
+#hid_chuthich{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  padding: 5px 5px;
+}
+
+#show_chuthich_desk{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 5px 5px;
+  z-index: 5;
 }
