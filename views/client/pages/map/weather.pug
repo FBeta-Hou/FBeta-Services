@@ -61,7 +61,7 @@ html(lang="en")
             map.on('load', () =>{
 
                 if (navigator.geolocation) {
-                    navigator.geolocation.watchPosition(
+                    navigator.geolocation.getCurrentPosition(
                         (position) => {
                             userCoords = [position.coords.longitude, position.coords.latitude];
                             map.flyTo({
@@ -79,7 +79,7 @@ html(lang="en")
                         {
                             enableHighAccuracy: true,
                             maximumAge: 0,
-                            timeout: 1000,
+                            timeout: 10000,
                         }
                     )
                 };
