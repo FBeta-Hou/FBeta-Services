@@ -1,7 +1,7 @@
 extends ../../layout/default
 
 block main
-    h1 Thông Báo Khẩn
+    h1 Thông Báo
     if message
         p.success #{message}
     form(action="/send-notification/send", method="POST")

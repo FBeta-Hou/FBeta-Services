@@ -37,13 +37,11 @@ function requestPermission() {
         console.log('Notification permission granted.');
         
         // Tạo và hiển thị thông báo
-        new Notification('Bạn Có Thể Nhận Thông Báo!', {
-          body: 'Cảm ơn bạn đã chấp nhận thông báo!.',
-        });
+        new Notification('Bạn Có Thể Nhận Thông Báo!');
 
         setCookie("notification", "true");
 
-        window.history.back();
+        history.back();
       } else {
           console.log('Bạn đã từ chối quyền nhận thông báo, bạn hãy bật lên để sử dụng trang web!');
       }
